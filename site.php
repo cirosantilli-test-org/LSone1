@@ -22,7 +22,6 @@ function cube($num){
 
 $cubeResult = cube($num);
 echo $cubeResult;
-
  ?>
 
 
