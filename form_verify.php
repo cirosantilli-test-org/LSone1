@@ -21,7 +21,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (empty($_POST["name"])) {
         $nameErr = "Name is required";
     } else {
-        $name = test_input($POST["name"]);
+        $name = test_input($_POST["name"]);
         if (!preg_match("/^[a-zA-Z ]*$/", $name)) {
             $nameErr = "Only letters and space";
         }
@@ -31,7 +31,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $emailErr = "Email is required";
     } else {
         $email = test_input($_POST["email"]);
-        if(!preg_match("/([\w\-]+\@[\w\-]+\.[\w\-]+/", $email)) {
+        if(!preg_match("/([\w\-]+\@[\w\-]+\.[\w\-]+)/", $email)) {
             $emailErr = "Invalid format";
         }
     }
@@ -40,7 +40,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $website = "";
     } else {
         $website = test_input($_POST["website"]);
-        if (!preg_match("/\b(?:(?:https?|ftp):\/\/|www\.)[-a-z0-9+&@#\/%?=~_|!:,.;]*[-a-z0-9+&@#\/%=~_|]/i]", $website)) {
+        if (!preg_match("/\b(?:(?:https?|ftp):\/\/|www\.)[-a-z0-9+&@#\/%?=~_|!:,.;]*[-a-z0-9+&@#\/%=~_|]/i", $website)) {
             $websiteErr = "Invalid URL";
         }
 
