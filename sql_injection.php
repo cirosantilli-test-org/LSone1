@@ -14,25 +14,17 @@
 include_once 'db.php';
 
 if (isset($_POST["submit"])) {
-  if (empty($_POST["first"]) ||
-  empty($_POST["last"] ||
-  empty($_POST["email"]) ||
-  empty($_POST["uid"]) ||
-  empty($_POST["pwd"])) {
-    $error = "Empty input exists";
-  } else {
-    $firstname = mysqli_real_escape_string($connection, $_POST["first"]);
-    $lastname = mysqli_real_escape_string($connection, $_POST["last"]);
+    $first = mysqli_real_escape_string($connection, $_POST["first"]);
+    $last = mysqli_real_escape_string($connection, $_POST["last"]);
     $email = mysqli_real_escape_string($connection, $_POST["email"]);
-    $username = mysqli_real_escape_string($connection, $_POST["uid"]);
-    $password = mysqli_real_escape_string($connection, md5($_POST["pwd"]));
+    $uid = mysqli_real_escape_string($connection, $_POST["uid"]);
+    $pwd = mysqli_real_escape_string($connection, md5($_POST["pwd"]));
 
-    $sql = "INSERT INTO users (user_first, user_last, user_email, user_uid, user_pwd) VALUES ('$first', '$last', '$email', '$uid', '$pwd')";
+    $sql  = "INSERT INTO users (first, last, email, uid, pwd) VALUES ('$first', '$last', '$email', '$uid', '$pwd')";
 
     mysqli_query($connection, $sql);
 
     header('Location: sql_injection.php');
-  }
 }
  ?>
 
