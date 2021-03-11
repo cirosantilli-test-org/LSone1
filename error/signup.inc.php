@@ -32,6 +32,7 @@ if (empty($first) || empty($last) || empty($email) || empty($uid) || empty($pwd)
   exit();
 }
 }
+} 
 } else {
   header("Location: index.php");
   exit();
