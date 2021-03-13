@@ -4,6 +4,9 @@
     <meta charset="utf-8">
     <title>Error handler</title>
     <style>
+    body {
+      background-image: url(../images/wallhaven-gj991d.png);
+    }
     div {
       border-radius: 5px;
       background-color: #f2f2f2;
@@ -96,55 +99,54 @@
       <input type="text" name="pwd" placeholder="Password">
       <button type="submit" name="submit">Sign up</button>
     </form>
-  </div>
+    <?php
+    $fullUrl = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 
-  <?php
-  $fullUrl = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
-
-  if (strpos($fullUrl, "signup=empty") == true) {
-    echo "<p class='error'>You did not fill in a fields!</p>";
-    exit();
-  }
-  elseif (strpos($fullUrl, "signup=char") == true) {
-    echo "<p class='error'>You used invalid characters!</p>";
-    exit();
-  }
-  elseif (strpos($fullUrl, "signup=invalidemail") == true) {
-    echo "<p class='error'>You used invalid email!</p>";
-    exit();
-  }
-  elseif (strpos($fullUrl, "signup=success") == true) {
-    echo "<p class='success'>You have been signed up!</p>";
-    exit();
-  }
-
-/*
-//Another method for error message
-  if (!isset($_GET["signup"])) {
-    exit();
-  }
-  else {
-    $signupCheck = $_GET["signup"];
-
-    if ($signupCheck == "empty") {
+    if (strpos($fullUrl, "signup=empty") == true) {
       echo "<p class='error'>You did not fill in a fields!</p>";
       exit();
     }
-    elseif ($signupCheck == "char") {
+    elseif (strpos($fullUrl, "signup=char") == true) {
       echo "<p class='error'>You used invalid characters!</p>";
       exit();
     }
-    elseif ($signupCheck == "email") {
+    elseif (strpos($fullUrl, "signup=invalidemail") == true) {
       echo "<p class='error'>You used invalid email!</p>";
       exit();
     }
-    elseif ($signupCheck == "success") {
+    elseif (strpos($fullUrl, "signup=success") == true) {
       echo "<p class='success'>You have been signed up!</p>";
       exit();
     }
-  }
-  */
 
-   ?>
+  /*
+  //Another method for error message
+    if (!isset($_GET["signup"])) {
+      exit();
+    }
+    else {
+      $signupCheck = $_GET["signup"];
+
+      if ($signupCheck == "empty") {
+        echo "<p class='error'>You did not fill in a fields!</p>";
+        exit();
+      }
+      elseif ($signupCheck == "char") {
+        echo "<p class='error'>You used invalid characters!</p>";
+        exit();
+      }
+      elseif ($signupCheck == "email") {
+        echo "<p class='error'>You used invalid email!</p>";
+        exit();
+      }
+      elseif ($signupCheck == "success") {
+        echo "<p class='success'>You have been signed up!</p>";
+        exit();
+      }
+    }
+    */
+
+     ?>
+  </div>
   </body>
 </html>
