@@ -25,14 +25,14 @@ if (empty($first) || empty($last) || empty($email) || empty($uid) || empty($pwd)
   } else {
     //check if email is valid
   if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-    header("Location: index.php?signup=invalidemail");
+    header("Location: index.php?signup=email&first=$first&last=$last&uid=$uid");
     exit();
 } else {
   header("Location: index.php?signup=success");
   exit();
 }
 }
-} 
+}
 } else {
   header("Location: index.php");
   exit();
