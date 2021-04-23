@@ -1,5 +1,6 @@
 <?php
     session_start();
+    include_once 'db.php';
 ?>
 
 <!DOCTYPE html>
@@ -11,6 +12,28 @@
   <body>
 
     <?php
+    $sql1 = "SELECT * FROM user";
+    $result1 = mysqli_query($connection, $sql1);
+    if (mysqli_num_rows($result1) > 0) {
+      while ($row1 = mysqli_fetch_assoc($result1)) {
+        $id = $row1['id'];
+        $sql2 = "SELECT * FROM profileimg WHERE userid='$id'";
+        $result2 = mysqli_query($connection, $sql2);
+        while ($row2 = mysqli_fetch_assoc($result2)) {
+          echo "<div>";
+          if ($row2['status'] == 0) {
+            echo "<img src='uploads/profile".$id.".jpg'>";
+          } else {
+            echo "<img src='uploads/profiledefault.jpg'>";
+          }
+          echo $row['username'];
+          echo "</div>";
+        }
+      }
+    } else {
+      echo "There are no users yet.";
+    }
+
     if (isset($_SESSION['id'])) {
       if (isset($_SESSION['id'] == 1)) {
         echo "You are logged in as user #1";
