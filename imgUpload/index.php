@@ -8,10 +8,12 @@
   <head>
     <meta charset="utf-8">
     <title></title>
+    <link rel="stylesheet" href="style.css">
   </head>
   <body>
 
     <?php
+
     $sql1 = "SELECT * FROM user";
     $result1 = mysqli_query($connection, $sql1);
     if (mysqli_num_rows($result1) > 0) {
@@ -20,13 +22,13 @@
         $sql2 = "SELECT * FROM profileimg WHERE userid='$id'";
         $result2 = mysqli_query($connection, $sql2);
         while ($row2 = mysqli_fetch_assoc($result2)) {
-          echo "<div>";
+          echo "<div class='user-container'>";
           if ($row2['status'] == 0) {
-            echo "<img src='uploads/profile".$id.".jpg'>";
+            echo "<img src='uploads/profile".$id.".jpg?'".mt_rand().">";
           } else {
-            echo "<img src='uploads/profiledefault.jpg'>";
+            echo "<img src='uploads/profile.jpeg'>";
           }
-          echo $row['username'];
+          echo "<p>".$row1['username']."</p>";
           echo "</div>";
         }
       }
@@ -35,7 +37,7 @@
     }
 
     if (isset($_SESSION['id'])) {
-      if (isset($_SESSION['id'] == 1)) {
+      if ($_SESSION['id'] == 1) {
         echo "You are logged in as user #1";
       }
       echo "<form action='upload.php' method='post' enctype='multipart/form-data'>
@@ -44,13 +46,13 @@
             </form>";
     } else {
       echo "You are not logged in!";
-      echo "<form action='login.php' method='post'>
+      echo "<form action='signup.php' method='post'>
               <input type='text' name='first' placeholder='Firstname'>
               <input type='text' name='last' placeholder='Lastname'>
               <input type='text' name='uid' placeholder='Username'>
               <input type='password' name='pwd' placeholder='Password'>
               <button type='submit' name='submitSignup'>Signup</button>
-            </form>"
+            </form>";
     }
      ?>
 
