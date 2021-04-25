@@ -24,7 +24,11 @@
         while ($row2 = mysqli_fetch_assoc($result2)) {
           echo "<div class='user-container'>";
           if ($row2['status'] == 0) {
-            echo "<img src='uploads/profile".$id.".jpg?'".mt_rand().">";
+            $fileName = "uploads/profile".$id."*";
+            $fileInfo = glob($fileName);
+            $fileExt = explode(".", $fileInfo[0]);
+            $fileActualExt = $fileExt[1];
+            echo "<img src='uploads/profile".$id.".".$fileActualExt."?".mt_rand()."'>";
           } else {
             echo "<img src='uploads/profile.jpeg'>";
           }
@@ -44,6 +48,9 @@
               <input type='file' name='file'>
               <button type='submit' name='submit'>Upload</button>
             </form>";
+      echo "<form action='deleteprofile.php' method='post'>
+              <button type='submit' name='submit'>Delete profile image</button>
+            </form>";
     } else {
       echo "You are not logged in!";
       echo "<form action='signup.php' method='post'>
@@ -54,7 +61,8 @@
               <button type='submit' name='submitSignup'>Signup</button>
             </form>";
     }
-     ?>
+    ?>
+
 
     <p>Login as a user: </p>
     <form action="login.php" method="post">
